@@ -10,7 +10,8 @@ timestamp() {
 }
 timestamp
 
-echo -e "What's your name?" 
+echo -e "What's your name?"
+#nic a normie 
 read varname
 echo -e "Cool, nice name\n"
 
