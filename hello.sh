@@ -3,40 +3,38 @@
 
 file=$(hexdump -n 16 -v -e '/1 "%02x"' /dev/urandom)
 
-echo -e "\n$file"
+ 
+
 # Timestamp function
 timestamp() {
-    date +"%T"
+   date +"%F_%T" 
 }
-timestamp
+vartime=$(timestamp)
 
-echo -e "What's your name?"
-#nic a normie 
+
+echo -e "What's your name?" 
 read varname
 echo -e "Cool, nice name\n"
 
-echo "$varname," >> Desktop/scripts/survey.csv
-
-yes=("Yes" "yes" "yeah" "yep")
-no=("No" "no" "nope")
 repeat=1
 
     while [ $repeat == 1 ]; do
         echo -e "Ok $varname, have you been arrested in the last year?" 
         read vararrest
-            if [ "$vararrest" == $yes ]; then   
+        vararrest=$(echo $vararrest | tr '[:upper:]' '[:lower:]')
+            if [ "$vararrest" == "yes" ]; then   
                 echo -e "It's alright i'm not a cop. Your secret is safe with me\n"
                 repeat=0
-            elif [ "$vararrest" == $no ]; then
+            elif [ "$vararrest" == "no" ]; then
                 echo -e "Yeah of course you haven't, cause they never caught you\n"
                 repeat=0
             else    
-                echo -e "Sorry, I'm going to need a straight answer. Type yes or no\n"
+                echo -e "Sorry, i'm gonna need a straight answer. Type yes or no\n"
                 repeat=1
             fi
     done 
     
-    echo "$vararrest," >> Desktop/scripts/survey.csv
+  
 
     while [ $repeat == 0 ]; do
         echo -e "How many months old is the pair of shoes you are currently wearing?" 
@@ -50,7 +48,7 @@ repeat=1
             fi  
     done
 
-    echo "$varshoes," >> Desktop/scripts/survey.csv
+  
 
     while [ $repeat == 1 ]; do
         echo -e "How many months has it been since you went to the dentist?" 
@@ -64,16 +62,17 @@ repeat=1
             fi
     done
 
-echo "$varteeth," >> Desktop/scripts/survey.csv
+
 
 echo -e "What is your mothers middle name?" 
 read varmname
 echo -e "I'm sure she is a lovely woman\n"
 
-echo "$varmname," >> Desktop/scripts/survey.csv
+
 while [ $repeat == 0 ]; do
-    echo -e "Is a hot dog a sandwhich?" 
+    echo -e "Is a hot dog a sandwich?" 
     read vardog
+    vardog=$(echo $vardog | tr '[:upper:]' '[:lower:]')
         if [ "$vardog" == "yes" ]; then
             echo -e "Alright well that's just your bad opinion\n"
             repeat=1
@@ -86,8 +85,7 @@ while [ $repeat == 0 ]; do
         fi
 done
 
-echo "$vardog," >> Desktop/scripts/survey.csv
+echo "$file," "$vartime," "$varname,""$vararrest," "$varshoes," "$varteeth," "$varmname," "$vardog," >> ~/Desktop/scripts/survey.csv
 
     echo -e "Thanks for taking my little bash survey"
-
 
