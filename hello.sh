@@ -85,7 +85,7 @@ while [ $repeat == 0 ]; do
         fi
 done
 
-echo "$file," "$vartime," "$varname,""$vararrest," "$varshoes," "$varteeth," "$varmname," "$vardog," >> ~/Desktop/scripts/survey.csv
+echo "$file," "$vartime," "$varname,""$vararrest," "$varshoes," "$varteeth," "$varmname," "$vardog," >> ~/Desktop/scripts/bash-survey/survey.csv
 
     echo -e "Thanks for taking my little bash survey"
 
